@@ -11,6 +11,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif; /* Добавил шрифт */
         }
         .full-screen {
             display: flex;
@@ -58,6 +59,38 @@
             text-align: center;
             padding: 10px 0;
         }
+        /* Добавил стили для кнопки и анимацию */
+        #moreInfoBtn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #moreInfoBtn:hover {
+            background-color: #777;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -73,6 +106,10 @@
         <section id="about">
             <h2>О проекте "Взаимодействие судебной системы России с исполнительной и законодательной властью: оценка эффективности и согласованности власти"</h2>
             <p>Здесь вы можете узнать подробности о нашем проекте и его целях. Проект создан с целью дать людям объективный и подробный обзор взаимодействия судебной системы РФ.</p>
+            <button id="moreInfoBtn">Подробнее</button>
+            <div id="moreInfo" class="hidden">
+                <p>Дополнительная информация о проекте включает анализ последних изменений в законодательстве, реформы судебной системы, а также результаты исследований и выводы экспертов.</p>
+            </div>
         </section>
     </div>
 
@@ -80,5 +117,16 @@
         <p>&copy Ойдинов Чингиз класс 10.4</p>
         <div class="logo"> <img src="images/logo.jpg" alt="Логотип" width="250" height="100"></div>
     </footer>
+
+    <script>
+        // Добавлен скрипт для отображения дополнительной информации
+        const moreInfoBtn = document.getElementById('moreInfoBtn');
+        const moreInfo = document.getElementById('moreInfo');
+
+        moreInfoBtn.addEventListener('click', function() {
+            moreInfo.classList.toggle('hidden');
+            moreInfo.classList.toggle('fade-in');
+        });
+    </script>
 </body>
-</html>
+    </html>
