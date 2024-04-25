@@ -32,6 +32,11 @@
             position: fixed;
             width: 100%;
             top: 0;
+            cursor: pointer; /* Добавил курсор указывающий на возможность клика */
+            transition: background-color 0.3s ease; /* Плавный переход цвета фона при наведении */
+        }
+        header:hover {
+            background-color: #555; /* Изменение цвета фона при наведении */
         }
         header a {
             color: white;
@@ -39,19 +44,30 @@
             padding: 10px 20px;
             border-radius: 5px;
             background-color: #555;
+            transition: background-color 0.3s ease; /* Плавный переход цвета фона при наведении */
         }
         header a:hover {
-            background-color: #777;
+            background-color: #777; /* Изменение цвета фона при наведении */
         }
         h2 {
             color: #333;
             text-align: center; /* Центрирование заголовка */
+            cursor: pointer; /* Добавил курсор указывающий на возможность клика */
+            transition: color 0.3s ease; /* Плавный переход цвета текста при наведении */
+        }
+        h2:hover {
+            color: #555; /* Изменение цвета текста при наведении */
         }
         section {
             margin: 20px;
             padding: 20px;
             background-color: white;
             border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Добавил тень блоку */
+            max-width: 600px; /* Ограничение ширины блока */
+            overflow: hidden; /* Скрытие части блока при закрытии */
+            transition: max-height 0.5s ease, padding 0.5s ease; /* Плавное изменение максимальной высоты и отступов */
         }
         footer {
             background-color: #333;
@@ -61,40 +77,23 @@
         }
         /* Добавил стили для кнопки и анимацию */
         #moreInfoBtn {
-            background-color: #555;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            display: none; /* Скрыть кнопку, когда информация отображается */
         }
-        #moreInfoBtn:hover {
-            background-color: #777;
+        #moreInfoBtn.visible {
+            display: inline-block;
         }
         .hidden {
-            display: none;
+            max-height: 0; /* Скрытие текста при загрузке страницы */
+            padding: 0 20px; /* Скрытие отступов при скрытом тексте */
         }
-        .fade-in {
-            animation: fadeIn 0.5s ease;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .visible {
+            max-height: 500px; /* Отображение всего текста */
+            padding: 20px; /* Отображение отступов */
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <a href="https://jejsksjfh.github.io/www.sudebniypravo.oi/">Вернуться назад</a>
         <!-- Центрирование "О проекте" -->
         <div style="flex-grow: 1;"></div>
@@ -104,11 +103,11 @@
 
     <div class="full-screen">
         <section id="about">
-            <h2>О проекте "Взаимодействие судебной системы России с исполнительной и законодательной властью: оценка эффективности и согласованности власти"</h2>
-            <p>Здесь вы можете узнать подробности о нашем проекте и его целях. Проект создан с целью дать людям объективный и подробный обзор взаимодействия судебной системы РФ.</p>
-            <button id="moreInfoBtn">Подробнее</button>
+            <h2 id="toggleInfo">О проекте</h2>
             <div id="moreInfo" class="hidden">
-                <p>Дополнительная информация о проекте включает анализ последних изменений в законодательстве, реформы судебной системы, а также результаты исследований и выводы экспертов.</p>
+                <p>Наш проект призван исследовать и оценить взаимодействие судебной системы России с исполнительной и законодательной властью с целью выявления эффективности и согласованности их действий. Мы проводим анализ последних изменений в законодательстве, а также изучаем реформы, проводимые в судебной системе.</p>
+                <p>Наши исследования позволяют выявить проблемные моменты и недостатки во взаимодействии властей, а также предлагать рекомендации по улучшению ситуации. Мы стремимся предоставить объективный и подробный обзор взаимодействия судебной системы России с другими ветвями власти для широкой общественности.</p>
+                <p>Благодарим за интерес к нашему проекту!</p>
             </div>
         </section>
     </div>
@@ -119,14 +118,14 @@
     </footer>
 
     <script>
-        // Добавлен скрипт для отображения дополнительной информации
-        const moreInfoBtn = document.getElementById('moreInfoBtn');
+        // Добавлен скрипт для отображения/скрытия дополнительной информации при клике на заголовок
+        const toggleInfo = document.getElementById('toggleInfo');
         const moreInfo = document.getElementById('moreInfo');
 
-        moreInfoBtn.addEventListener('click', function() {
+        toggleInfo.addEventListener('click', function() {
             moreInfo.classList.toggle('hidden');
-            moreInfo.classList.toggle('fade-in');
+            moreInfo.classList.toggle('visible');
         });
     </script>
 </body>
-    </html>
+                                                              </html>
